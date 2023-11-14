@@ -1,14 +1,23 @@
 import tkinter as tk
 import os
 
+
+absolute_path = os.path.dirname(__file__)
+
 destination_file1 = "D:\\CYBERPUNK2077\\r6\\config\\inputUserMappings.xml"
 destination_file2 = "C:\\Users\\MACIEJ\\AppData\\Local\\CD Projekt Red\\Cyberpunk 2077\\UserSettings.json"
 
-source_left_file1 = "C:\\Users\\MACIEJ\\Documents\\CP2077Settings\\LiftLeft\\inputUserMappings.xml"
-source_left_file2 = "C:\\Users\\MACIEJ\\Documents\\CP2077Settings\\LiftLeft\\UserSettings.json"
+relative_path_left_file1 = "LiftLeft\\inputUserMappings.xml"
+relative_path_left_file2 = "LiftLeft\\UserSettings.json"
 
-source_default_file1 = "C:\\Users\\MACIEJ\\Documents\\CP2077Settings\\Default\\inputUserMappings.xml"
-source_default_file2 = "C:\\Users\\MACIEJ\\Documents\\CP2077Settings\\Default\\UserSettings.json"
+relative_path_default_file1 = "Default\\inputUserMappings.xml"
+relative_path_default_file2 = "Default\\UserSettings.json"
+
+source_left_file1  = os.path.join(absolute_path, relative_path_left_file1)
+source_left_file2  = os.path.join(absolute_path, relative_path_left_file2)
+
+source_default_file1  = os.path.join(absolute_path, relative_path_default_file1)
+source_default_file2  = os.path.join(absolute_path, relative_path_default_file2)
 
 
 def submit():

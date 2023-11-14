@@ -3,9 +3,13 @@ import os
 
 
 absolute_path = os.path.dirname(__file__)
+appdata_path = os.getenv('LOCALAPPDATA')
 
 destination_file1 = "D:\\CYBERPUNK2077\\r6\\config\\inputUserMappings.xml"
-destination_file2 = "C:\\Users\\MACIEJ\\AppData\\Local\\CD Projekt Red\\Cyberpunk 2077\\UserSettings.json"
+
+relative_path_destination_file2 = "CD Projekt Red\\Cyberpunk 2077\\UserSettings.json"
+destination_file2 = os.path.join(appdata_path, relative_path_destination_file2)
+
 
 relative_path_left_file1 = "LiftLeft\\inputUserMappings.xml"
 relative_path_left_file2 = "LiftLeft\\UserSettings.json"

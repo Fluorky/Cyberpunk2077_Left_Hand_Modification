@@ -1,12 +1,38 @@
 import tkinter as tk
 import os
+from winreg import ConnectRegistry, OpenKey, HKEY_LOCAL_MACHINE, KEY_READ,QueryValueEx
 
+def find_cyberpunk_installation_path():
+    try:
+        # Connect to the registry
+        registry = ConnectRegistry(None, HKEY_LOCAL_MACHINE)
+        
+        # Open the key for Cyberpunk 2077
+
+        key_path = r"SOFTWARE\WOW6432Node\GOG.com\Games\1423049311"
+        key = OpenKey(registry, key_path, 0, KEY_READ)
+
+        # Read the installation path value
+     
+        value_name = "path"
+        installation_path, _ = QueryValueEx(key, value_name)
+        #print(key)
+        print(installation_path)
+        #print(_)
+        key.Close()       
+
+        return installation_path
+        
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
 
 absolute_path = os.path.dirname(__file__)
 appdata_path = os.getenv('LOCALAPPDATA')
 
-destination_file1 = "D:\\CYBERPUNK2077\\r6\\config\\inputUserMappings.xml"
-
+relative_path_destination_file1 = "r6\\config\\inputUserMappings.xml"
+destination_file1 = os.path.join(find_cyberpunk_installation_path(),relative_path_destination_file1)
 relative_path_destination_file2 = "CD Projekt Red\\Cyberpunk 2077\\UserSettings.json"
 destination_file2 = os.path.join(appdata_path, relative_path_destination_file2)
 
